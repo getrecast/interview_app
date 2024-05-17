@@ -59,6 +59,6 @@ class SpendForecastsController < ApplicationController
   end
 
   def spend_forecast_params
-    params.require(:spend_forecast).permit(:name, :start_date, :end_date, :channel_daily_spend_limit)
+    params.require(:spend_forecast).permit(:name, :start_date, :end_date, :channel_daily_spend_limit, :budget)
   end
 end
