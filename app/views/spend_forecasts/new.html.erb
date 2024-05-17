@@ -3,8 +3,7 @@
     <div class="bg-white p-6 rounded-lg shadow-md">
         <div id="spend_forecast">
             <%= render 'form', spend_forecast: @spend_forecast, user: current_user %>
+            <%= turbo_stream_from current_user %>
         </div>
     </div>
 </div>
-
-<%= turbo_stream_from current_user %>
