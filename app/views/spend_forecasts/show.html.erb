@@ -1,0 +1,29 @@
+<div class="container mx-auto p-6">
+    <div class="text-center mb-6">
+        <h1 class="text-4xl font-bold mb-2">Spend Forecast</h1>
+        <h2 class="text-2xl text-gray-700 mb-4"><%= @spend_forecast.name %></h2>
+        <p class="text-lg text-gray-500">From <%= @spend_forecast.start_date %> to <%= @spend_forecast.end_date %></p>
+    </div>
+    <% if @spend_forecast.budget %>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead>
+                <tr class="bg-gray-800 text-white">
+                <% @spend_forecast.budget.first.each do |header| %>
+                    <th class="py-2 px-4 text-left"><%= header.capitalize %></th>
+                <% end %>
+                </tr>
+            </thead>
+            <tbody>
+                <% @spend_forecast.budget.drop(1).each do |entry| %>
+                <tr class="border-b border-gray-200">
+                    <% entry.each do |value| %>
+                    <td class="py-2 px-4"><%= value %></td>
+                    <% end %>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+    <% end %>
+</div>
