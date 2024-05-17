@@ -24,6 +24,22 @@ class SpendForecastsController < ApplicationController
     end
   end
 
+  def create
+    if spend_forecast.update(spend_forecast_params)
+      redirect_to spend_forecast_path(spend_forecast)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def create
+    if spend_forecast.update(spend_forecast_params)
+      redirect_to spend_forecast_path(spend_forecast)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show;end
 
   def download_budget_csv
@@ -46,10 +62,5 @@ class SpendForecastsController < ApplicationController
     temp_params = params.require(:spend_forecast).permit(:name, :start_date, :end_date)
     temp_params.merge!(budget: process_csv(params[:spend_forecast][:budget_file])) if params[:spend_forecast][:budget_file]
     temp_params
-  end
-
-  def process_csv(file)
-    require 'csv'
-    CSV.read(file.path, headers: true)
   end
 end
