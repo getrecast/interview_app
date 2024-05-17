@@ -24,7 +24,7 @@ class SpendForecastsController < ApplicationController
     end
   end
 
-  def create
+  def update
     if spend_forecast.update(spend_forecast_params)
       redirect_to spend_forecast_path(spend_forecast)
     else
