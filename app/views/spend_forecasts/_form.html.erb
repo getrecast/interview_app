@@ -1,5 +1,5 @@
 <%= form_for spend_forecast, id: 'spend_forecast', html: { data: { controller: "budget-file", budget_file_target: "form", budget_file_user_id: user.id } } do |f| %>
-    <% if @spend_forecast.errors.any? %>
+    <% if spend_forecast.errors.any? %>
         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">There were some errors with your submission:</strong>
             <ul class="list-disc pl-5 mt-2">
@@ -68,57 +68,7 @@
             <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead>
                 <tr class="bg-gray-800 text-white">
-                <% f.object.rows_lost.first.each do |header| %>
-                    <th class="py-2 px-4 text-left"><%= header.capitalize %></th>
-                <% end %>
-                </tr>
-            </thead>
-            <tbody>
-                <% f.object.rows_lost.drop(1).each do |entry| %>
-                <tr class="border-b border-gray-200">
-                    <% entry.each do |value| %>
-                    <td class="py-2 px-4"><%= value %></td>
-                    <% end %>
-                </tr>
-                <% end %>
-            </tbody>
-            </table>
-        </div>
-    <% end %>
-
-    <%= f.hidden_field :budget, value: f.object.budget.to_json %>
-
-    <% if f.object.budget.present? %>
-        <h1> Rows present in spend forecast: </h1>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-            <thead>
-                <tr class="bg-gray-800 text-white">
-                <% f.object.budget.first.each do |header| %>
-                    <th class="py-2 px-4 text-left"><%= header.capitalize %></th>
-                <% end %>
-                </tr>
-            </thead>
-            <tbody>
-                <% f.object.budget.drop(1).each do |entry| %>
-                <tr class="border-b border-gray-200">
-                    <% entry.each do |value| %>
-                    <td class="py-2 px-4"><%= value %></td>
-                    <% end %>
-                </tr>
-                <% end %>
-            </tbody>
-            </table>
-        </div>
-    <% end %>
-
-    <% if f.object.rows_lost.present? %>
-        <h1> Rows missing from spend forecast: </h1>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-            <thead>
-                <tr class="bg-gray-800 text-white">
-                <% f.object.rows_lost.first.each do |header| %>
+                <% f.object.rows_lost.first.to_a.each do |header| %>
                     <th class="py-2 px-4 text-left"><%= header.capitalize %></th>
                 <% end %>
                 </tr>
@@ -138,7 +88,6 @@
 
     <div class="flex items-center justify-end mt-4">
         <%= f.submit 'Create Spend Forecast', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
-        <%= link_to 'Download Budget CSV template', download_budget_template_csv_user_path(@spend_forecast.user, format: :csv), class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
-        <button type="button" data-action="click->budget-file#deleteFile" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2">Delete Budget File</button>
+        <%= link_to 'Download Budget CSV template', download_budget_template_csv_user_path(spend_forecast.user, format: :csv), class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" %>
     </div>
 <% end %>

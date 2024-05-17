@@ -59,8 +59,6 @@ class SpendForecastsController < ApplicationController
   end
 
   def spend_forecast_params
-    temp_params = params.require(:spend_forecast).permit(:name, :start_date, :end_date)
-    temp_params.merge!(budget: process_csv(params[:spend_forecast][:budget_file])) if params[:spend_forecast][:budget_file]
-    temp_params
+    params.require(:spend_forecast).permit(:name, :start_date, :end_date, :channel_daily_spend_limit)
   end
 end
