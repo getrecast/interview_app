@@ -11,6 +11,8 @@ User is able to:
 * Download spend forecast budget csv's and csv template.
 * View forecast objects.
 
+See `data/budget.csv` for a budget template. In body first col is date and other rows are spend, which
+is expected to be a decimal representing dollars.
 
 ### What this app needs to do.
 * When user uploads csv, it needs to be formatted according to these constraints:
@@ -18,13 +20,11 @@ User is able to:
 2. Only columns, which exactly match any of `channels` persisted on `User` should be persisted.
 3. Allow spend to go up to a certain limit per channel in a day. If it is higher than that, it should be redistributed equally among other channels on that day(not sure about this one. I think checking if this logic works AND the rest of the app works will be too much).
 
-
 ### Requirements
 * Ruby 3.2.2
 * bundler
 
-### Setup
-
+### How to run:
 1. `bin/setup`
 2. run `bin/dev`
-
+3. Visit `localhost:3000`
