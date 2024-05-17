@@ -17,8 +17,6 @@ User is able to:
 1. Only rows, which have date, which is between start_date and end_date should be persisted.
 2. Only columns, which exactly match any of `channels` persisted on `User` should be persisted.
 3. Allow spend to go up to a certain limit per channel in a day. If it is higher than that, it should be redistributed equally among other channels.
-4. Allow spend to go up to a certain limit per day among all channels. If the spend is higher 
-than the limit, the extra amount should be substracted starting at the most costly channel.
 
 
 ### Requirements
