@@ -15,8 +15,8 @@ class SpendForecastsController < ApplicationController
 
   def update
     @spend_forecast = current_user.spend_forecasts.draft.find(params[:id])
-
     @spend_forecast.update(spend_forecast_params)
+
     if @spend_forecast.update(status: :in_progress)
       redirect_to spend_forecast_path(@spend_forecast)
     else
