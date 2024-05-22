@@ -23,8 +23,3 @@ is expected to be a decimal representing dollars.
 ### Requirements
 * Ruby 3.2.2
 * bundler
-
-### How to run:
-1. `bin/setup`
-2. run `bin/dev`
-3. Visit `localhost:3000`
