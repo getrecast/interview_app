@@ -16,5 +16,5 @@ See `data/budget.csv` for a budget template. In body first col is date and other
 is expected to be a decimal representing dollars.
 
 ### Requirements
-* Ruby 3.2.2
+* Ruby 4.0.9
 * bundler
